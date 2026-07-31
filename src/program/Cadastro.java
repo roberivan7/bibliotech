@@ -2,7 +2,7 @@ package program;
 
 import java.util.*;
 
-public class cadastro {
+public class Cadastro {
     public static void cadastroUsuario(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Para darmos seguimento precisamos do seus dados pessoais\n\nInforme seu nome:");
@@ -11,10 +11,7 @@ public class cadastro {
         int idade = sc.nextInt();
         System.out.println("Qual é a seu CPF\nObs: Sem pontos e hífen.");
         String cpf = sc.next();
-        if (cpf.equals("")) {
-            System.out.println("Você já tem cadastro conosco, tente novamente \no login trocando sua senha de acesso");
-            start.inicio();
-        }
+
         System.out.println("Qual é a seu email:");
         String email = sc.next();
         System.out.println("""
@@ -40,7 +37,7 @@ public class cadastro {
                 System.out.println("As senhas não se coincidem, tente novamente !!!");
             }
         }
-        dados.addUsuario(nome,cpf,email,senha);
-        start.secundario();
+        Dados.addUsuario(nome,cpf,email,senha);
+        VerificationUser.secundario();
     }
 }

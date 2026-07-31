@@ -2,20 +2,13 @@ package program;
 
 import java.util.Scanner;
 
-import static program.dados.verificarUser;
+import static program.Dados.verificarUser;
 
-public class start {
+public class VerificationUser {
 
     public static void inicio(){
         Scanner sc = new Scanner(System.in);
         System.out.println("""
-                ██████  ██ ██████  ██      ██  ██████  ████████ ███████  ██████ ██   ██\s
-                ██   ██ ██ ██   ██ ██      ██ ██    ██    ██    ██      ██      ██   ██\s
-                ██████  ██ ██████  ██      ██ ██    ██    ██    █████   ██      ███████\s
-                ██   ██ ██ ██   ██ ██      ██ ██    ██    ██    ██      ██      ██   ██\s
-                ██████  ██ ██████  ███████ ██  ██████     ██    ███████  ██████ ██   ██\s
-                
-                
                 Informe seu Login:
                 (Obs: Caso não tenha Login clique em 'Enter')
                 """);
@@ -28,12 +21,11 @@ public class start {
                 System.out.println("Login realizado com sucesso!");
             }else {
                 System.out.println("Login ou senha inválidos.");
-                cadastro.cadastroUsuario();
+                Cadastro.cadastroUsuario();
             }
         } catch (NullPointerException e) {
-            cadastro.cadastroUsuario();
+            Cadastro.cadastroUsuario();
         }
-
     }
 
     public static void secundario(){
