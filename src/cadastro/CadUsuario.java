@@ -1,19 +1,21 @@
-package program;
+package cadastro;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import armazenamento.*;
+import validator.*;
 
-public class Cadastro {
-    public static void cadastroUsuario(){
+public class CadUsuario extends Cadastrar{
+
+    @Override
+    public void add() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Para darmos seguimento precisamos do seus dados pessoais\n\nInforme seu nome:");
         String nome = sc.nextLine();
-        System.out.println("Qual é a sua idade:");
-        int idade = sc.nextInt();
-        System.out.println("Qual é a seu CPF\nObs: Sem pontos e hífen.");
-        String cpf = sc.next();
 
         System.out.println("Qual é a seu email:");
         String email = sc.next();
+
         System.out.println("""
                     \n\nAgora para terminar o seu cadastro preciso que crie um
                     senha para o seu login, pois o sistema irá armazenar
@@ -37,7 +39,26 @@ public class Cadastro {
                 System.out.println("As senhas não se coincidem, tente novamente !!!");
             }
         }
-        Dados.addUsuario(nome,cpf,email,senha);
-        VerificationUser.secundario();
     }
+
+    @Override
+    public void editar(String item) {
+        System.out.println("Editar");
+    }
+
+    @Override
+    public void remover(String item) {
+        System.out.println("Removendo");
+    }
+
+//    public static void addUsuario(String nome, String cpf, String email, String senha){
+//        dataPessoa.put(email,new ArrayList<>());
+//        dataPessoa.get(email).add(cpf);
+//        dataPessoa.get(email).add(email);
+//        dataPessoa.get(email).add(senha);
+//        dataPessoa.get(email).add(nome);
+//        System.out.println("Dados adicionado com sucesso !!!");
+//        // cpf -> posição 0 | email -> posição 1 | senha -> posição 2 | nome -> posição 3
+//    }
+
 }

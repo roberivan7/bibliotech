@@ -1,4 +1,5 @@
-import program.*;
+import validator.Autenticator;
+import validator.VerificationUser;
 
 public class App {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class App {
                 ██   ██ ██ ██   ██ ██      ██ ██    ██    ██    ██      ██      ██   ██\s
                 ██████  ██ ██████  ███████ ██  ██████     ██    ███████  ██████ ██   ██\s
                 """);
-        VerificationUser.inicio();
+        Autenticator.autenticacao();
         System.out.print("Bem vindo Sr(a)!!!");
     }
 }

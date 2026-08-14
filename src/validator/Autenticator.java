@@ -1,12 +1,15 @@
-package program;
+package validator;
 
+import armazenamento.*;
+import cadastro.CadUsuario;
+
+import javax.xml.validation.Validator;
 import java.util.Scanner;
 
-import static program.Dados.verificarUser;
+public class Autenticator {
 
-public class VerificationUser {
-
-    public static void inicio(){
+    public static void autenticacao(){
+        CadUsuario cadastro = new CadUsuario();
         Scanner sc = new Scanner(System.in);
         System.out.println("""
                 Informe seu Login:
@@ -16,15 +19,10 @@ public class VerificationUser {
         System.out.println("Informe a senha:");
         String senha = sc.next();
 
-        try {
-            if (verificarUser(login, senha)){
-                System.out.println("Login realizado com sucesso!");
-            }else {
-                System.out.println("Login ou senha inválidos.");
-                Cadastro.cadastroUsuario();
-            }
-        } catch (NullPointerException e) {
-            Cadastro.cadastroUsuario();
+        if (DadosUsers.verificarUser(login, senha)){
+            System.out.println("Login realizado com sucesso!");
+        }else {
+            System.out.println("Login ou senha inválidos.");
         }
     }
 
@@ -34,7 +32,7 @@ public class VerificationUser {
         String email = sc.next();
         System.out.print("Informe sua senha: ");
         String senha = sc.next();
-        if (verificarUser(email,senha)){
+        if (DadosUsers.verificarUser(email,senha)){
             System.out.println("Voce tem cadastro conosco !!!");
         }else {
             System.out.println("Aconteceu algum erro no salvamento das suas credenciais\n Ache o Error !!!");
