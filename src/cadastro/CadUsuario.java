@@ -7,6 +7,9 @@ import validator.*;
 
 public class CadUsuario extends Cadastrar{
 
+    private static String emailUsuario;
+    // Esse atributo permitirá conhecer qual usuario está ativo.
+
     @Override
     public void add() {
         Scanner sc = new Scanner(System.in);
@@ -15,6 +18,7 @@ public class CadUsuario extends Cadastrar{
 
         System.out.println("Qual é a seu email:");
         String email = sc.next();
+        emailUsuario = email; //Essa variavel representará o usuario ativo no sistema
 
         System.out.println("""
                     \n\nAgora para terminar o seu cadastro preciso que crie um
@@ -39,26 +43,42 @@ public class CadUsuario extends Cadastrar{
                 System.out.println("As senhas não se coincidem, tente novamente !!!");
             }
         }
+        DadosUsers.getDataPessoa().put(email, new ArrayList<String>());
+        DadosUsers.getDataPessoa().get(email).add(nome);
+        DadosUsers.getDataPessoa().get(email).add(senha);
+
+        System.out.println("Usuário "+nome+", foi criado com sucesso !!!");
     }
 
     @Override
-    public void editar(String item) {
-        System.out.println("Editar");
+    public void remover(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("""
+                Você tem certeza que deseja excluir o seu usuário do sistema !!!
+                [y] - Sim
+                [n] - Não
+                :
+                """);
+        String escolha = sc.next().toLowerCase();
+
+        if (escolha.equals("y")){
+            DadosUsers.getDataPessoa().remove(emailUsuario);
+            emailUsuario = ""; // apagando usuario ativo
+            System.out.println("Seu perfil foi excluído com sucesso !!!");
+        } else if (escolha.equals("n")) {
+            System.out.println("Opção cancelado");
+        }else {
+            System.out.println("Opção Invalida !!!");
+            System.out.println("Tente novamente !!!");
+            remover();
+        }
     }
 
-    @Override
-    public void remover(String item) {
-        System.out.println("Removendo");
+    public static void setEmailUsuario(String novoEmailUsuario) {
+        emailUsuario = novoEmailUsuario;
     }
 
-//    public static void addUsuario(String nome, String cpf, String email, String senha){
-//        dataPessoa.put(email,new ArrayList<>());
-//        dataPessoa.get(email).add(cpf);
-//        dataPessoa.get(email).add(email);
-//        dataPessoa.get(email).add(senha);
-//        dataPessoa.get(email).add(nome);
-//        System.out.println("Dados adicionado com sucesso !!!");
-//        // cpf -> posição 0 | email -> posição 1 | senha -> posição 2 | nome -> posição 3
-//    }
-
+    public static String getEmailUsuario() {
+        return emailUsuario;
+    }
 }

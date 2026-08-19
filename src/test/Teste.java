@@ -55,6 +55,14 @@ public class Teste {
             }
         }
         System.out.println(livro.get("Roberivan").contains("genero 10"));
+
+        System.out.println("Voce quer alterar um livro:");
+        String novo = sc.next();
+
+        livro.get("Roberivan").set(0,novo);
+        System.out.println(livro.get("Roberivan"));
+
+
     }
 }
 

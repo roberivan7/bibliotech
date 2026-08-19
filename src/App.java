@@ -1,5 +1,5 @@
-import validator.Autenticator;
-import validator.VerificationUser;
+import cadastro.*;
+import validator.*;
 
 public class App {
     public static void main(String[] args) {
@@ -10,7 +10,15 @@ public class App {
                 ██   ██ ██ ██   ██ ██      ██ ██    ██    ██    ██      ██      ██   ██\s
                 ██████  ██ ██████  ███████ ██  ██████     ██    ███████  ██████ ██   ██\s
                 """);
-        Autenticator.autenticacao();
+        CadUsuario cadatro = new CadUsuario();
+
+        try {
+            Autenticator.autenticacao();
+        } catch (NullPointerException e){
+            System.out.println("Usuario não cadastrado !!!");
+            cadatro.add();
+        }
+
         System.out.print("Bem vindo Sr(a)!!!");
     }
 }
