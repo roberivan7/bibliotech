@@ -17,8 +17,7 @@ public class App {
         } catch (NullPointerException e){
             System.out.println("Usuario não cadastrado !!!");
             cadatro.add();
+            Autenticator.secundario();
         }
-
-        System.out.print("Bem vindo Sr(a)!!!");
     }
 }

@@ -1,7 +1,5 @@
 package cadastro;
 
-import javax.swing.*;
-import java.awt.event.WindowFocusListener;
 import java.util.*;
 
 public class Biblioteca extends Cadastrar {
@@ -92,27 +90,36 @@ public class Biblioteca extends Cadastrar {
                     [q] - Quantidade
                     """);
             String escolha = sc.next();
-            if (escolha.equals("t")){
-                System.out.println("Informe um novo Titulo");
-                String novo = sc.next();
-                livro.put(novo,livro.remove(buscar)); // Esse linha seria para remover a chave antiga e deixar os valores dentro da chave nova.
-            }else if (escolha.equals("a")){
-                System.out.println("Informe um novo(a) Autor(a)");
-                String novo = sc.next();
-                livro.get(buscar).set(0,novo);
-            }else if (escolha.equals("g")) {
-                System.out.println("Informe um novo Genêro");
-                String novo = sc.next();
-                livro.get(buscar).set(1,novo);
-            }else if (escolha.equals("y")){
-                System.out.println("Informe um novo Ano");
-                String novo = sc.next();
-                livro.get(buscar).set(3,novo);
-            }else if (escolha.equals("q")) {
-                System.out.println("Informe uma nova Quantidade");
-                int novo = sc.nextInt();
-                livro.get(buscar).set(4,novo);
-            }
+            do {
+                if (escolha.equals("t")){
+                    System.out.println("Informe um novo Titulo:");
+    //                String novo = sc.next();
+                    livro.put(sc.next(),livro.remove(buscar)); // Esse linha seria para remover a chave antiga e deixar os valores dentro da chave nova.
+                    System.out.println("Titulo alterado com sucesso !!!");
+                }else if (escolha.equals("a")){
+                    System.out.println("Informe um novo(a) Autor(a):");
+                    String novo = sc.next();
+                    livro.get(buscar).set(0,novo);
+                    System.out.println("Nome do Autor alterado com sucesso !!!");
+                }else if (escolha.equals("g")) {
+                    System.out.println("Informe um novo Genêro:");
+                    String novo = sc.next();
+                    livro.get(buscar).set(1,novo);
+                    System.out.println("Gênero alterado com sucesso !!!");
+                }else if (escolha.equals("y")){
+                    System.out.println("Informe um novo Ano:");
+                    String novo = sc.next();
+                    livro.get(buscar).set(3,novo);
+                    System.out.println("Ano alterado com sucesso !!!");
+                }else if (escolha.equals("q")) {
+                    System.out.println("Informe uma nova Quantidade:");
+                    int novo = sc.nextInt();
+                    livro.get(buscar).set(4,novo);
+                    System.out.println("Quatidade alterado com sucesso !!!");
+                }else {
+                    System.out.println("Digito desconhecido, tente novamente");
+                }
+            } while (escolha.equals("t") || escolha.equals("a") || escolha.equals("g") || escolha.equals("y") || escolha.equals("q"));
         }
     }
 }

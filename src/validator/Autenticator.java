@@ -23,18 +23,18 @@ public class Autenticator {
         }
     }
 
-//    public static void secundario(){
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Informe seu email: ");
-//        String email = sc.next();
-//        System.out.print("Informe sua senha: ");
-//        String senha = sc.next();
-//        if (verificarUser(email,senha)){
-//            System.out.println("Voce tem cadastro conosco !!!");
-//        }else {
-//            System.out.println("Aconteceu algum erro no salvamento das suas credenciais\n Ache o Error !!!");
-//        }
-//    }
+    public static void secundario(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Informe seu email: ");
+        String email = sc.next();
+        System.out.print("Informe sua senha: ");
+        String senha = sc.next();
+        if (verificarUser(email,senha)){
+            System.out.println("Seja bem-vindo(a) Sr(a) "+DadosUsers.getDataPessoa().get(email).getFirst()+" a Bibliotech !");
+        }else {
+            System.out.println("Aconteceu algum erro no salvamento das suas credenciais\n Ache o Error !!!");
+        }
+    }
 
     public static boolean verificarUser(String email, String senha){
         return DadosUsers.getDataPessoa().get(email).contains(senha);

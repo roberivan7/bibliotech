@@ -30,39 +30,12 @@ public class Teste {
         livro.get("Luis").add("ano 20");
         System.out.println("\n\nLivro Adicionado com Sucesso !!!\n\n");
 
-        System.out.println("Buscar");
-        String buscar = sc.nextLine();
-
-        for (String buscando : livro.keySet()){
-            if (buscar.equals(buscando)){
-                System.out.println("Autor: "+buscando);
-                System.out.println("Livro: "+livro.get(buscando).get(0));
-                System.out.println("Genero: "+livro.get(buscando).get(1));
-                System.out.println("Codigo: "+livro.get(buscando).get(2));
-                System.out.println("Ano: "+livro.get(buscando).get(3));
-//                for (int i = 0;i < livro.get(buscando).size(); i++) {
-//                    System.out.println(livro.get(buscando).get(i));
-//                }
-            }
-        }
-        for (String autor: livro.keySet()){
-            if (livro.get(autor).contains(buscar)){
-                System.out.println("Autor: "+autor);
-                System.out.println("Livro: "+livro.get(autor).get(0));
-                System.out.println("Genero: "+livro.get(autor).get(1));
-                System.out.println("Codigo: "+livro.get(autor).get(2));
-                System.out.println("Ano: "+livro.get(autor).get(3));
-            }
-        }
-        System.out.println(livro.get("Roberivan").contains("genero 10"));
-
-        System.out.println("Voce quer alterar um livro:");
-        String novo = sc.next();
-
-        livro.get("Roberivan").set(0,novo);
         System.out.println(livro.get("Roberivan"));
-
-
+        System.out.println("Infome um novo nome: ");
+        String novo = sc.next();
+        livro.put(novo,livro.remove("Roberivan"));
+        System.out.println(livro.get(novo));
+        System.out.println(livro);
     }
 }
 
