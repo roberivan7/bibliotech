@@ -19,5 +19,13 @@ public class App {
             cadatro.add();
             Autenticator.secundario();
         }
+        System.out.println("""
+                    --------------- MENU ---------------
+                    [] - Acervo
+                    [] - Editar Livros    
+                    [] - Adicionar Livros
+                    [] - Pegar Livro
+                    [] - Devolver Livro
+        """);
     }
 }
