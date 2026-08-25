@@ -6,6 +6,24 @@ public class Biblioteca extends Cadastrar {
     private static HashMap<String, ArrayList<Object>> livro;
     // key -> Titulo | 0 -> Autor | 1 -> genero | 2 -> codigo | 3 -> ano | 4 -> Quantidade
 
+    public enum statusLivro {
+        EMPRESTADO,
+        DISPONIVEL,
+        EM_FALTA
+    }
+
+    public enum genero {
+        TECNOLOGIA,
+        POESIA,
+        ROMANCE,
+        FILOSOFIA,
+        HISTORIA,
+        BIOGRAFIA,
+        DRAMA,
+        SUSPENSE,
+        MANGA
+    }
+
     public static void acervo(){
         System.out.println(" id  |  Titulo  |    Autor    |   Gênero     |   Codigo   |  ano  | Quantidade");
         ArrayList<String> nameBook = new ArrayList<>();
