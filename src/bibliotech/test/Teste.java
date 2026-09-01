@@ -1,9 +1,7 @@
-package test;
-import java.lang.reflect.Array;
+package bibliotech.test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Spliterator;
 
 public class Teste {
     private static HashMap<String, ArrayList<String>> livro = new HashMap();

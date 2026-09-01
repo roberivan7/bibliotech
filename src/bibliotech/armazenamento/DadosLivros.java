@@ -1,4 +1,4 @@
-package armazenamento;
+package bibliotech.armazenamento;
 
 import java.util.*;
 

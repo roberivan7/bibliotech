@@ -1,4 +1,4 @@
-package cadastro;
+package bibliotech.cadastro;
 
 import java.util.*;
 

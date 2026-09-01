@@ -1,4 +1,4 @@
-package cadastro;
+package bibliotech.cadastro;
 
 public abstract class Cadastrar {
     public void remover(){};

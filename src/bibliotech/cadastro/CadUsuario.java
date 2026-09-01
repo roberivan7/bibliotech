@@ -1,11 +1,19 @@
-package cadastro;
+package bibliotech.cadastro;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import armazenamento.*;
-import validator.*;
+import bibliotech.armazenamento.*;
+import bibliotech.validator.*;
 
 public class CadUsuario extends Cadastrar{
+
+    DadosUsers root = new DadosUsers(
+            "Roberivan",
+            "admin@bibliotech.com",
+            "@Admin321",
+            "12345678910"
+    );
+
 
     private static String emailUsuario;
     // Esse atributo permitirá conhecer qual usuario está ativo.
@@ -20,12 +28,13 @@ public class CadUsuario extends Cadastrar{
         String email = sc.next();
         if (DadosUsers.getDataPessoa().containsKey(email)){
             System.out.println("Esse email já está cadastro no nosso sitema, tente fazer o login.");
-            Autenticator.secundario();
+            Autenticator.autenticacao();
+
         }
         emailUsuario = email; //Essa variavel representará o usuario ativo no sistema
 
-        System.out.println("Informe sua data de nascimento: \n\nObs: não insira traço (-) nem barras (/).");
-        String data = sc.next();
+        System.out.println("Informe seu CPF: \n\nObs: não insira traço (-) nem ponto (.)");
+        String cpf = sc.next();
 
         System.out.println("""
                     \n\nAgora para terminar o seu cadastro preciso que crie um
@@ -50,10 +59,11 @@ public class CadUsuario extends Cadastrar{
                 System.out.println("As senhas não se coincidem, tente novamente !!!");
             }
         }
-        DadosUsers.getDataPessoa().put(email, new ArrayList<String>());
+        DadosUsers.getDataPessoa().put(email, new ArrayList<Object>());
         DadosUsers.getDataPessoa().get(email).add(nome);
         DadosUsers.getDataPessoa().get(email).add(senha);
-        DadosUsers.getDataPessoa().get(email).add(data);
+        DadosUsers.getDataPessoa().get(email).add(cpf);
+        DadosUsers.getDataPessoa().get(email).add(DadosUsers.nivelAcesso.USER);
 
         System.out.println("Usuário "+nome+", foi criado com sucesso !!!");
     }
@@ -62,7 +72,7 @@ public class CadUsuario extends Cadastrar{
     public void remover(){
         Scanner sc = new Scanner(System.in);
         System.out.print("""
-                Você tem certeza qu""e deseja excluir o seu usuário do sistema !!!
+                Você tem certeza que deseja excluir o seu usuário do sistema !!!
                 [y] - Sim
                 [n] - Não
                 :

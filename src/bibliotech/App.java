@@ -1,5 +1,7 @@
-import cadastro.*;
-import validator.*;
+package bibliotech;
+
+import bibliotech.cadastro.*;
+import bibliotech.validator.*;
 
 public class App {
     public static void main(String[] args) {
@@ -10,16 +12,16 @@ public class App {
                 ██   ██ ██ ██   ██ ██      ██ ██    ██    ██    ██      ██      ██   ██\s
                 ██████  ██ ██████  ███████ ██  ██████     ██    ███████  ██████ ██   ██\s
                 """);
-        CadUsuario cadatro = new CadUsuario();
+        CadUsuario cadastro = new CadUsuario();
 
         try {
             Autenticator.autenticacao();
         } catch (NullPointerException e){
             System.out.println("Usuario não cadastrado !!!");
-            cadatro.add();
-            Autenticator.secundario();
+            cadastro.add();
         }
-        
+        Autenticator.autenticacao();
+
         System.out.println("""
                     --------------- MENU ---------------
                     [1] - Acervo

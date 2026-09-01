@@ -1,6 +1,4 @@
-package cadastro;
-
-import armazenamento.*;
+package bibliotech.cadastro;
 
 public class ModificarAcervo {
     public static void pegarLivro(){
