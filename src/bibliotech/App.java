@@ -1,5 +1,6 @@
 package bibliotech;
-
+import bibliotech.armazenamento.DadosUsers;
+import bibliotech.menu.*;
 import bibliotech.cadastro.*;
 import bibliotech.validator.*;
 
@@ -22,13 +23,12 @@ public class App {
         }
         Autenticator.autenticacao();
 
-        System.out.println("""
-                    --------------- MENU ---------------
-                    [1] - Acervo
-                    [2] - Editar Livros    
-                    [3] - Adicionar Livros
-                    [4] - Pegar Livro
-                    [5] - Devolver Livro
-        """);
+        if(DadosUsers.getDataPessoa().get(CadUsuario.getEmailUsuario()).get(3).equals("ADM")){
+            System.out.println("Voce é ADM");
+        }else {
+            System.out.println("Voce é USER");
+        }
+
+        Menu.execucao(Menu.menuPrincipal());
     }
 }

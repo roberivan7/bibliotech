@@ -32,7 +32,7 @@ public class DadosUsers {
     }
 
     private static HashMap<String, ArrayList<Object>> dataPessoa = new HashMap<>();
-    // key - Email | 0 - Nome | 1 - Senha | 2 - cpf | 3 - Nivel de Acesso
+    // key - Email | 0 - Nome | 1 - Senha | 2 - cpf | 3 - Nivel de Acesso (User ou Root)
 
     public static HashMap<String,ArrayList<Object>> getDataPessoa(){
         return dataPessoa;

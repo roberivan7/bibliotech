@@ -46,6 +46,8 @@ public class Autenticator {
             System.out.println("Email não cadastro. Tente Novamente !!!");
             autenticacao();
         }
+
+
     }
 
     public static boolean verificarUserEmail(String email){

@@ -14,7 +14,6 @@ public class CadUsuario extends Cadastrar{
             "12345678910"
     );
 
-
     private static String emailUsuario;
     // Esse atributo permitirá conhecer qual usuario está ativo.
 
@@ -29,7 +28,6 @@ public class CadUsuario extends Cadastrar{
         if (DadosUsers.getDataPessoa().containsKey(email)){
             System.out.println("Esse email já está cadastro no nosso sitema, tente fazer o login.");
             Autenticator.autenticacao();
-
         }
         emailUsuario = email; //Essa variavel representará o usuario ativo no sistema
 
