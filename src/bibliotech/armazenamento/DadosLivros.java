@@ -4,6 +4,7 @@ import java.util.*;
 
 public class DadosLivros {
     private static HashMap<String, ArrayList<String>> dataLivro = new HashMap<>();
+    // key - Titulo | 0 - Autor | 1 - Genero | 2 - codigo | 3 - Ano | 4 - Quantidade
 
     public static HashMap<String, ArrayList<String>> getDataLivro(){return dataLivro;}
 
@@ -15,7 +16,9 @@ public class DadosLivros {
                 System.out.println("Título: "+dataLivro.get(buscar).get(0));
                 System.out.println("Genero: "+dataLivro.get(buscar).get(1));
                 System.out.println("Codigo: "+dataLivro.get(buscar).get(2));
-                System.out.println("Ano: "+dataLivro.get(buscar).get(3)+"\n");
+                System.out.println("Ano: "+dataLivro.get(buscar).get(3));
+                System.out.println("Quantidade: "+dataLivro.get(buscar).get(4));
+                System.out.println("Status: "+(Integer.parseInt(dataLivro.get(buscar).get(4)) == 0 ? "Indisponível":"Disponível")+"\n"); // Aqui o valor do hashmap foi convertido de string para int, para conseguir fazer a operação lógica
                 System.out.println(" ----------------- \n\n");
             }else if(dataLivro.get(buscar).contains(livro)){
             // Buscar por Genero, Codigo, Titulo e Ano
@@ -23,7 +26,9 @@ public class DadosLivros {
                 System.out.println("Título: "+dataLivro.get(buscar).get(0));
                 System.out.println("Genero: "+dataLivro.get(buscar).get(1));
                 System.out.println("Codigo: "+dataLivro.get(buscar).get(2));
-                System.out.println("Ano: "+dataLivro.get(buscar).get(3)+"\n");
+                System.out.println("Ano: "+dataLivro.get(buscar).get(3));
+                System.out.println("Quantidade: "+dataLivro.get(buscar).get(4));
+                System.out.println("Status: "+(Integer.parseInt(dataLivro.get(buscar).get(4)) == 0 ? "Indisponível":"Disponível")+"\n"); // Aqui o valor do hashmap foi convertido de string para int, para conseguir fazer a operação lógica
                 System.out.println(" ----------------- \n\n");
             }else{
                 System.out.println("Livro não cadastrado !!!");

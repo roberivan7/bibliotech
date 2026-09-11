@@ -1,4 +1,6 @@
 package bibliotech.test;
+import bibliotech.cadastro.Biblioteca;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -7,33 +9,44 @@ public class Teste {
     private static HashMap<String, ArrayList<String>> livro = new HashMap();
         // 0 -> Autor | 1 -> genero | 2 -> id | 3 -> ano
 
+    public enum Genero {
+        TECNOLOGIA,
+        POESIA,
+        ROMANCE,
+        FILOSOFIA,
+        HISTORIA,
+        BIOGRAFIA,
+        DRAMA,
+        SUSPENSE,
+        MANGA
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        livro.put("David", new ArrayList<>());
-        livro.get("David").add("nomeLivro");
-        livro.get("David").add("genero");
-        livro.get("David").add("codigo");
-        livro.get("David").add("ano");
-        System.out.println("\n\nLivro Adicionado com Sucesso !!!\n\n");
-        livro.put("Roberivan", new ArrayList<>());
-        livro.get("Roberivan").add("nomeLivro 10");
-        livro.get("Roberivan").add("genero");
-        livro.get("Roberivan").add("codigo 10");
-        livro.get("Roberivan").add("ano 10");
-        System.out.println("\n\nLivro Adicionado com Sucesso !!!\n\n");
-        livro.put("Luis", new ArrayList<>());
-        livro.get("Luis").add("nomeLivro 20");
-        livro.get("Luis").add("genero");
-        livro.get("Luis").add("codigo 20");
-        livro.get("Luis").add("ano 20");
-        System.out.println("\n\nLivro Adicionado com Sucesso !!!\n\n");
-
-        System.out.println(livro.get("Roberivan"));
-        System.out.println("Infome um novo nome: ");
-        String novo = sc.next();
-        livro.put(novo,livro.remove("Roberivan"));
-        System.out.println(livro.get(novo));
-        System.out.println(livro);
+        Genero genero = null;
+        while (true) {
+            System.out.println("""
+                            Informe o digito do genero abaixo:
+                            [1] - TECNOLOGIA,
+                            [2] - POESIA
+                            [3] - ROMANCE
+                            [4] - FILOSOFIA
+                            [5] - HISTORIA
+                            [6] - BIOGRAFIA
+                            [7] - DRAMA
+                            [8] - SUSPENSE
+                            [9] - MANGA
+                    """);
+            int escolha = sc.nextInt();
+            switch (escolha) {
+                case 1 -> genero = Genero.TECNOLOGIA;
+                case 2 -> genero = Genero.ROMANCE;
+                case 3 -> genero = Genero.DRAMA;
+                default -> System.out.println("Informe um valor valido.");
+            }
+            if(genero != null) break;
+        }
+        System.out.println(genero);
     }
 }
 
