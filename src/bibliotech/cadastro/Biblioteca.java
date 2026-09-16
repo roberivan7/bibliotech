@@ -5,8 +5,6 @@ import bibliotech.armazenamento.DadosLivros;
 import bibliotech.armazenamento.DadosUsers;
 
 public class Biblioteca extends Cadastrar {
-    private static HashMap<String, ArrayList<Object>> livro;
-    // key -> Titulo | 0 -> Autor | 1 -> genero | 2 -> codigo | 3 -> ano | 4 -> Quantidade
 
     public enum statusLivro {
         EMPRESTADO,
@@ -44,14 +42,25 @@ public class Biblioteca extends Cadastrar {
                 acervo();
             }
         }else {
-            System.out.println(" id  |  Titulo  |    Autor    |   Gênero     |   Codigo   |  ano  | Quantidade");
+            System.out.println(" id  |  Titulo  |    Autor    |   Gênero     |   Codigo   |  ano  | Quantidade  | Status ");
             ArrayList<String> nameBook = new ArrayList<>();
-            Spliterator<String> nomesDados = livro.keySet().spliterator();
+            Spliterator<String> nomesDados = DadosLivros.getDataLivro().keySet().spliterator();
             nomesDados.forEachRemaining(nomes -> {nameBook.add(nomes);});
-            for (int i = 0; i < livro.size(); i++) {
-                System.out.printf(" %d  |    %s |     %s    |   %s     |   %s   |  %s%n",i,nameBook.get(i),livro.get(nameBook.get(i)).getFirst(),livro.get(nameBook.get(i)).get(1),livro.get(nameBook.get(i)).get(2),livro.get(nameBook.get(i)).get(3),livro.get(nameBook.get(i)).get(4));
+            for (int i = 0; i < DadosLivros.getDataLivro().size(); i++) {
+                System.out.printf("     %d      |     %s      |     %s      |     %s      |     %s      |     %s      |     %s      |     %s%n      ",i,nameBook.get(i),DadosLivros.getDataLivro().get(nameBook.get(i)).getFirst(),DadosLivros.getDataLivro().get(nameBook.get(i)).get(1),DadosLivros.getDataLivro().get(nameBook.get(i)).get(2),DadosLivros.getDataLivro().get(nameBook.get(i)).get(3),DadosLivros.getDataLivro().get(nameBook.get(i)).get(4),Integer.parseInt(DadosLivros.getDataLivro().get(nameBook.get(i)).get(4)) == 0 ? "Indisponível":"Disponível");
             }
         }
+
+        System.out.println("""                
+                --------- Solicitar Empretismo ---------
+                [y] - Sim
+                [n] - Não
+                """);
+        String choice = sc.next().toLowerCase();
+
+        if (choice.equals("y")) emprestimo();
+        else if (choice.equals("n")) System.out.println("Acervo Finalizado !!!");
+        else System.out.println("Opção não reconhecida !!!");
     }
 
     @Override
@@ -97,18 +106,18 @@ public class Biblioteca extends Cadastrar {
         System.out.print("Informe a quantidade: "); // A devolutiva desse print deve ser um data mesmo, depois foco nisso
         String quantidade = sc.next(); // ira receber String por conta do arraylist ira receber String no Dados Livros
 
-        livro.put(nomeLivro, new ArrayList<>());
-        livro.get(nomeLivro).add(autor);
-        livro.get(nomeLivro).add(genero);
-        livro.get(nomeLivro).add(codigo.toUpperCase());
-        livro.get(nomeLivro).add(ano);
-        livro.get(nomeLivro).add(quantidade);
-        if(livro.get(nomeLivro).get(4).equals(0)){
+        DadosLivros.getDataLivro().put(nomeLivro, new ArrayList<>());
+        DadosLivros.getDataLivro().get(nomeLivro).add(autor);
+        DadosLivros.getDataLivro().get(nomeLivro).add(genero.toString());
+        DadosLivros.getDataLivro().get(nomeLivro).add(codigo.toUpperCase());
+        DadosLivros.getDataLivro().get(nomeLivro).add(ano);
+        DadosLivros.getDataLivro().get(nomeLivro).add(quantidade);
+        if(DadosLivros.getDataLivro().get(nomeLivro).get(4).equals("0")){
             String status = "Indisponivel";
-            livro.get(nomeLivro).add(status);
+            DadosLivros.getDataLivro().get(nomeLivro).add(status);
         }else {
             String status = "Disponivel";
-            livro.get(nomeLivro).add(status);
+            DadosLivros.getDataLivro().get(nomeLivro).add(status);
         }
         System.out.println("\n\nLivro Adicionado com Sucesso !!!\n\n");
     }
@@ -119,8 +128,8 @@ public class Biblioteca extends Cadastrar {
         System.out.println("Informe o codigo do livro para a exclusão:");
         acervo();
         String codigo = sc.next().toUpperCase();
-        for (String buscar : livro.keySet()) {
-            if (livro.get(buscar).get(2).equals(codigo)){
+        for (String buscar : DadosLivros.getDataLivro().keySet()) {
+            if (DadosLivros.getDataLivro().get(buscar).get(2).equals(codigo)){
                 System.out.printf("""
                 Você realmente deseja excluir o livro: %s ?
                 Você tem certeza que deseja excluir o seu usuário do sistema !!!
@@ -130,7 +139,7 @@ public class Biblioteca extends Cadastrar {
                 """,buscar);
                 String opcao = sc.next();
                 if (opcao.equals("y")){
-                    livro.remove(buscar);
+                    DadosLivros.getDataLivro().remove(buscar);
                     System.out.println("Livro removido com sucesso !!!");
                 }else if (opcao.equals("n")){
                     System.out.println("Opção cancelada");
@@ -151,10 +160,10 @@ public class Biblioteca extends Cadastrar {
         System.out.println("\nInforme o código do livro que deseja editar:");
         String codigo = sc.next().toUpperCase();
         System.out.println("  Dados do livro atual: \n\nTitulo  |    Autor    |   Gênero     |   Codigo   |  ano  | Quantidade");
-        for (String buscar : livro.keySet()) {
-            if (livro.get(buscar).get(2).equals(codigo)) {
-                for (int i = 0; i < livro.get(buscar).size(); i++) {
-                    System.out.printf(" %s  |    %s |     %s    |   %s     |   %s   |  %s%n",buscar,livro.get(buscar).getFirst(),livro.get(buscar).get(1),livro.get(buscar).get(2),livro.get(buscar).get(3),livro.get(buscar).get(4));
+        for (String buscar : DadosLivros.getDataLivro().keySet()) {
+            if (DadosLivros.getDataLivro().get(buscar).get(2).equals(codigo)) {
+                for (int i = 0; i < DadosLivros.getDataLivro().get(buscar).size(); i++) {
+                    System.out.printf(" %s  |    %s |     %s    |   %s     |   %s   |  %s%n",buscar,DadosLivros.getDataLivro().get(buscar).getFirst(), DadosLivros.getDataLivro().get(buscar).get(1),DadosLivros.getDataLivro().get(buscar).get(2),DadosLivros.getDataLivro().get(buscar).get(3),DadosLivros.getDataLivro().get(buscar).get(4));
                 }
             }
             System.out.println("""
@@ -170,27 +179,27 @@ public class Biblioteca extends Cadastrar {
                 if (escolha.equals("t")){
                     System.out.println("Informe um novo Titulo:");
     //                String novo = sc.next();
-                    livro.put(sc.next(),livro.remove(buscar)); // Esse linha seria para remover a chave antiga e deixar os valores dentro da chave nova.
+                    DadosLivros.getDataLivro().put(sc.next(),DadosLivros.getDataLivro().remove(buscar)); // Esse linha seria para remover a chave antiga e deixar os valores dentro da chave nova.
                     System.out.println("Titulo alterado com sucesso !!!");
                 }else if (escolha.equals("a")){
                     System.out.println("Informe um novo(a) Autor(a):");
                     String novo = sc.next();
-                    livro.get(buscar).set(0,novo);
+                    DadosLivros.getDataLivro().get(buscar).set(0,novo);
                     System.out.println("Nome do Autor alterado com sucesso !!!");
                 }else if (escolha.equals("g")) {
                     System.out.println("Informe um novo Genêro:");
                     String novo = sc.next();
-                    livro.get(buscar).set(1,novo);
+                    DadosLivros.getDataLivro().get(buscar).set(1,novo);
                     System.out.println("Gênero alterado com sucesso !!!");
                 }else if (escolha.equals("y")){
                     System.out.println("Informe um novo Ano:");
                     String novo = sc.next();
-                    livro.get(buscar).set(3,novo);
+                    DadosLivros.getDataLivro().get(buscar).set(3,novo);
                     System.out.println("Ano alterado com sucesso !!!");
                 }else if (escolha.equals("q")) {
                     System.out.println("Informe uma nova Quantidade:");
-                    int novo = sc.nextInt();
-                    livro.get(buscar).set(4,novo);
+                    String novo = sc.next();
+                    DadosLivros.getDataLivro().get(buscar).set(4,novo);
                     System.out.println("Quatidade alterado com sucesso !!!");
                 }else {
                     System.out.println("Digito desconhecido, tente novamente");
@@ -200,6 +209,40 @@ public class Biblioteca extends Cadastrar {
     }
 
     public static void emprestimo(){
-        System.out.println("Emprestado !!!");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Informe o codigo do livro para emprestimo:");
+        String codigo = sc.next();
+
+        int tentativa = 1;
+        for(String buscar : DadosLivros.getDataLivro().keySet()){
+            if(Integer.parseInt(DadosLivros.getDataLivro().get(buscar).get(2)) >= 1){
+                if(DadosLivros.getDataLivro().get(buscar).get(2).equals(codigo)) {
+                    int qtd = Integer.parseInt(DadosLivros.getDataLivro().get(buscar).get(4))-1;
+                    DadosLivros.getDataLivro().get(buscar).set(2,String.valueOf(qtd));
+                    System.out.println("Livro Disponivel para emprestimo !!!");
+                    break;
+                } else if (tentativa == DadosLivros.getDataLivro().size()) {
+                    System.out.println("""
+                            Livro indiponivel no acervo  !!!
+                            
+                            Deseja inserir outro codigo ?
+                            [y] - Sim
+                            [n] - Não
+                            """);
+                    if (sc.next().equals("y")) emprestimo();
+                    else break;
+                }else {tentativa++;}
+            } else if (Integer.parseInt(DadosLivros.getDataLivro().get(buscar).get(2)) == 0 && DadosLivros.getDataLivro().get(buscar).get(2).equals(codigo)) {
+                System.out.println("""
+                        Livro indiposnivel no Acervo !!!
+                        
+                        Deseja inserir outro codigo ?
+                        [y] - Sim
+                        [n] - Não
+                        """);
+                if (sc.next().equals("y")) emprestimo();
+                else break;
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@ public class DadosLivros {
                 System.out.println("Codigo: "+dataLivro.get(buscar).get(2));
                 System.out.println("Ano: "+dataLivro.get(buscar).get(3));
                 System.out.println("Quantidade: "+dataLivro.get(buscar).get(4));
-                System.out.println("Status: "+(Integer.parseInt(dataLivro.get(buscar).get(4)) == 0 ? "Indisponível":"Disponível")+"\n"); // Aqui o valor do hashmap foi convertido de string para int, para conseguir fazer a operação lógica
+                System.out.println("Status: "+(Integer.parseInt(dataLivro.get(buscar).get(4)) == 0 ? "Indisponível":"Disponíve")+"\n"); // Aqui o valor do hashmap foi convertido de string para int, para conseguir fazer a operação lógica
                 System.out.println(" ----------------- \n\n");
             }else{
                 System.out.println("Livro não cadastrado !!!");
