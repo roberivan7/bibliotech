@@ -223,7 +223,7 @@ public class Biblioteca extends Cadastrar {
                     break;
                 } else if (tentativa == DadosLivros.getDataLivro().size()) {
                     System.out.println("""
-                            Livro indiponivel no acervo  !!!
+                            Livro inexistente no acervo  !!!
                             
                             Deseja inserir outro codigo ?
                             [y] - Sim
@@ -242,6 +242,8 @@ public class Biblioteca extends Cadastrar {
                         """);
                 if (sc.next().equals("y")) emprestimo();
                 else break;
+            }else {
+                System.out.println("Livro");
             }
         }
     }

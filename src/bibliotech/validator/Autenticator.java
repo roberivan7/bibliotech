@@ -46,8 +46,6 @@ public class Autenticator {
             System.out.println("Email não cadastro. Tente Novamente !!!");
             autenticacao();
         }
-
-
     }
 
     public static boolean verificarUserEmail(String email){
@@ -88,5 +86,12 @@ public class Autenticator {
                 System.out.printf("Email não localizado, tente novamente %s !!!",(i==2?"mais tarde":""));
             }
         }
+    }
+
+    public static String nivelAcesso(String usuario){
+        String acesso = "";
+        if(DadosUsers.getDataPessoa().get(usuario).get(3).equals("ADM")) acesso = "ADM";
+        else if(DadosUsers.getDataPessoa().get(usuario).get(3).equals("USER")) acesso = "USER";
+        return acesso;
     }
 }

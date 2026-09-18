@@ -15,20 +15,16 @@ public class App {
                 """);
         CadUsuario cadastro = new CadUsuario();
 
-        try {
-            Autenticator.autenticacao();
-        } catch (NullPointerException e){
-            System.out.println("Usuario não cadastrado !!!");
-            cadastro.add();
-        }
+//        try {
+//            Autenticator.autenticacao();
+//        } catch (NullPointerException e){
+//            System.out.println("Usuario não cadastrado !!!");
+//            cadastro.add();
+//        }
         Autenticator.autenticacao();
 
-        if(DadosUsers.getDataPessoa().get(CadUsuario.getEmailUsuario()).get(3).equals("ADM")){
-            System.out.println("Voce é ADM");
-        }else {
-            System.out.println("Voce é USER");
-        }
+        Autenticator.nivelAcesso(CadUsuario.getEmailUsuario());
 
-        Menu.execucao(Menu.menuPrincipal());
+        Menu.menuPrincipal();
     }
 }

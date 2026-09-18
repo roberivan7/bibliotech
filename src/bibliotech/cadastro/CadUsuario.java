@@ -1,7 +1,6 @@
 package bibliotech.cadastro;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import bibliotech.armazenamento.*;
 import bibliotech.validator.*;
 
@@ -45,9 +44,8 @@ public class CadUsuario extends Cadastrar{
 
         // Verificação de senha.
         while (true){
-            System.out.println("informe sua nova senha:");
-            senha = sc.next();
 
+            senha = sc.next();
             System.out.println("informe sua nova senha:\nObs: Senha deve esta exatamento igual da etapa anterior.");
             String confirmSenha = sc.next();
             if (senha.equals(confirmSenha)){
@@ -59,7 +57,7 @@ public class CadUsuario extends Cadastrar{
         }
         DadosUsers.getDataPessoa().put(email, new ArrayList<Object>());
         DadosUsers.getDataPessoa().get(email).add(nome);
-        DadosUsers.getDataPessoa().get(email).add(senha);
+        DadosUsers.getDataPessoa().get(email).add(senha); // tipo primitivo é char.
         DadosUsers.getDataPessoa().get(email).add(cpf);
         DadosUsers.getDataPessoa().get(email).add(DadosUsers.nivelAcesso.USER);
 
