@@ -90,8 +90,8 @@ public class Autenticator {
 
     public static String nivelAcesso(String usuario){
         String acesso = "";
-        if(DadosUsers.getDataPessoa().get(usuario).get(3).equals("ADM")) acesso = "ADM";
-        else if(DadosUsers.getDataPessoa().get(usuario).get(3).equals("USER")) acesso = "USER";
+        if(DadosUsers.getDataPessoa().get(usuario).get(3).equals(DadosUsers.nivelAcesso.ROOT)) acesso = "ADM";
+        else if(DadosUsers.getDataPessoa().get(usuario).get(3).equals(DadosUsers.nivelAcesso.USER)) acesso = "USER";
         return acesso;
     }
 }

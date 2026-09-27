@@ -16,7 +16,7 @@ public class DadosUsers {
         this.email = email;
         this.senha = senha;
         this.cpf = cpf;
-        tipoUser = nivelAcesso.ADM;
+        tipoUser = nivelAcesso.ROOT;
         getDataPessoa().put(email, new ArrayList<Object>());
         getDataPessoa().get(email).add(nome);
         getDataPessoa().get(email).add(senha);
@@ -27,7 +27,7 @@ public class DadosUsers {
     public DadosUsers(){}
 
     public enum nivelAcesso {
-        ADM,
+        ROOT,
         USER
     }
 

@@ -13,14 +13,7 @@ public class App {
                 ██   ██ ██ ██   ██ ██      ██ ██    ██    ██    ██      ██      ██   ██\s
                 ██████  ██ ██████  ███████ ██  ██████     ██    ███████  ██████ ██   ██\s
                 """);
-        CadUsuario cadastro = new CadUsuario();
 
-//        try {
-//            Autenticator.autenticacao();
-//        } catch (NullPointerException e){
-//            System.out.println("Usuario não cadastrado !!!");
-//            cadastro.add();
-//        }
         Autenticator.autenticacao();
 
         Autenticator.nivelAcesso(CadUsuario.getEmailUsuario());
