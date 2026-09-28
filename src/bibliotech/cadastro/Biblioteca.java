@@ -3,6 +3,9 @@ package bibliotech.cadastro;
 import java.util.*;
 import bibliotech.armazenamento.DadosLivros;
 import bibliotech.armazenamento.DadosUsers;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Biblioteca extends Cadastrar {
 
@@ -218,8 +221,43 @@ public class Biblioteca extends Cadastrar {
             if(Integer.parseInt(DadosLivros.getDataLivro().get(buscar).get(2)) >= 1){
                 if(DadosLivros.getDataLivro().get(buscar).get(2).equals(codigo)) {
                     int qtd = Integer.parseInt(DadosLivros.getDataLivro().get(buscar).get(4))-1;
-                    DadosLivros.getDataLivro().get(buscar).set(2,String.valueOf(qtd));
+                    DadosLivros.getDataLivro().get(buscar).set(2,String.valueOf(qtd)); // novo valor sendo alterado no indice da quantidade
                     System.out.println("Livro Disponivel para emprestimo !!!");
+                    System.out.printf("""
+                            ==================================================
+                                             RECIBO DE EMPRÉSTIMO
+                                                BIBLIOTECH
+                            ==================================================
+                            
+                            Aluno: %s
+                            Data do empréstimo: %s
+                            
+                            --------------------------------------------------
+                            DADOS DO LIVRO
+                            --------------------------------------------------
+                            
+                            Livro  : %s
+                            Autor  : %s
+                            Gênero : %s
+                            
+                            --------------------------------------------------
+                            STATUS DO EMPRÉSTIMO
+                            --------------------------------------------------
+                            
+                            Livro emprestado com sucesso!
+                            
+                            Data prevista para devolução: %s
+                            
+                            ==================================================
+                                    Obrigado por utilizar a Bibliotech!
+                            ==================================================
+                            """,
+                            DadosUsers.getDataPessoa().get(CadUsuario.getEmailUsuario()).getFirst(),
+                            LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                            DadosLivros.getDataLivro().get(buscar),
+                            DadosLivros.getDataLivro().get(buscar).get(0),
+                            DadosLivros.getDataLivro().get(buscar).get(1),
+                            LocalDate.now().plusDays(7).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                     break;
                 } else if (tentativa == DadosLivros.getDataLivro().size()) {
                     System.out.println("""
